@@ -15,5 +15,3 @@ def searchOperadora():
 
 if __name__ == '__main__':
     app.run()
-
-# https://stackoverflow.com/questions/69823336/creating-search-function-on-csv-file-through-flask ngc do html talvez use para o vue
