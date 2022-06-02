@@ -1,14 +1,16 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, render_template, request
 import pandas as pd
 
 app = Flask(__name__)
 
-@app.route('/',)
+data = pd.read_csv('Relatorio_cadopTeste4.csv', header=2, sep=';', encoding='ISO-8859-1')
+operadoras = data['Nome Fantasia'].to_list()
+
+@app.route('/', methods=['GET'])
 def searchOperadora():
-  data = pd.read_csv('Relatorio_cadopTeste4.csv', header=2, sep=';', encoding='ISO-8859-1')
-  operadoras = data['Representante'].to_list()
-  operadora = request.args.get('Representante', type = str)
-  show = {'operadoras': operadora}
+  nomeFantasia = request.args.get('NomeFantasia')
+  filtered = filter(lambda name: str(name).find(nomeFantasia) >= 0, operadoras)
+  show = {'operadoras': list(filtered)}
   return jsonify(show)
 
 if __name__ == '__main__':
