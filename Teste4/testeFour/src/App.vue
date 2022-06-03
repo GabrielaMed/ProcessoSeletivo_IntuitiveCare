@@ -2,7 +2,7 @@
   <div class="home">
     <h1>LISTA DE OPERADORAS</h1>
     <div class="input" id="input">
-      <input type="search" v-model="textSearch" placeholder="Buscar operadora" onkeydown="upperCaseF(this)"/>
+      <input type="search" v-model="textSearch" placeholder="Buscar operadora"/>
       <button @click="handleSearch">Buscar</button>
       <p>{{operadora}}</p>
     </div>
@@ -26,7 +26,7 @@ export default {
   },
   methods:{
     handleSearch: function(){
-      fetch(`http://127.0.0.1:5000/search?razaoSocial=${this.textSearch}`)
+      fetch(`http://127.0.0.1:5000/search?razaoSocial=${this.textSearch.toUpperCase()}`)
       .then(response => response.json().then(json => 
       { 
         console.log(json.operadoras)
