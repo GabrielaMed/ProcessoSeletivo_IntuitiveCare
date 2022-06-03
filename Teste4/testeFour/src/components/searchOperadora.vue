@@ -1,5 +1,5 @@
 <template>
-  <div class='input-div'>
+  <div class='operadoras'>
     <p class="operadora">
       {{ operadora }}
     </p>
@@ -15,11 +15,10 @@ export default {
 </script>
 
 <style scoped>
-  .input-div{
+  .operadoras{
     display: flex;
     padding: 0 10px;
     line-height: 2px;
-    font-family: Arial, Helvetica, sans-serif;
   }
 
   .operadora{

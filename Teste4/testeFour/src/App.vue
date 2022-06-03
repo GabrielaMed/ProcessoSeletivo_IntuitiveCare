@@ -1,10 +1,9 @@
 <template>
   <div class="home">
     <h1>LISTA DE OPERADORAS</h1>
-    <div class="input" id="input">
+    <div class="input">
       <input type="search" v-model="textSearch" placeholder="Buscar operadora"/>
       <button @click="handleSearch">Buscar</button>
-      <p>{{operadora}}</p>
     </div>
     <SearchOperadora v-for="operadora in operadoras" :key="operadora.razaoSocial" :operadora="operadora"/>
   </div>
@@ -27,7 +26,8 @@ export default {
   methods:{
     handleSearch: function(){
       fetch(`http://127.0.0.1:5000/search?razaoSocial=${this.textSearch.toUpperCase()}`)
-      .then(response => response.json().then(json => 
+      .then(response => response.json()
+      .then(json => 
       { 
         console.log(json.operadoras)
         this.operadoras = json.operadoras
@@ -35,7 +35,9 @@ export default {
     }
   },
   mounted(){
-    fetch(`http://127.0.0.1:5000/`).then(response => response.json().then(json => this.operadoras = json.operadoras))
+    fetch(`http://127.0.0.1:5000/`)
+    .then(response => response.json()
+    .then(json => this.operadoras = json.operadoras))
   }
 };
 
@@ -45,6 +47,7 @@ export default {
   .home{
     display: flex;
     flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   h1{
